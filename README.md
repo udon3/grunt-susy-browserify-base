@@ -64,6 +64,6 @@ The below method of including Susy seems to fail for me:
 		}
 	}
 
-not sure of because of location of susy files (in bower_components)? 
+...not sure if because of location of susy files (in bower_components)? 
 
 
