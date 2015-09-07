@@ -1,0 +1,261 @@
+
+section {
+	width: 100%;
+} 
+
+/* FLEXBOX STUFF */
+
+//header navigation
+.nav-list {
+	display: flex; //create a flexbox container
+	flex-direction: row; //set direction (row or column)- this direction becomes the 'main axis', and the other becomes the 'cross axis'
+	flex-wrap: nowrap; //default (also wrap, wrap-reverse)
+	justify-content: space-between; //even distribution with first on start line and last on end line (space around adds even spaces around flex items)
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+
+	li {
+		//children of a flex container become 'flex items'
+	}
+
+	@media screen and (min-width: 800px){
+		justify-content: flex-start;
+		position: relative;
+		top: -70px;
+
+		li:first-child {
+			margin-right:20px;
+		}
+		li:last-child {
+			margin-left: 20px;
+		}
+		li.other-side {
+			margin-left: auto;
+		}
+	}
+}
+.no-flex .nav-list {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+
+	li {
+		display: inline-block;
+		text-align: center;
+		width: 30%;
+	}
+}
+
+//single row form:
+.flex-form section {
+	display: flex;
+	flex-direction: row;
+	//justify-content: start;
+	align-items: stretch; //this can be overridden by 'align-self'
+	text-align: center;//no-flex fallback
+	margin-bottom: 20px;
+
+	 * { //non-flex fallback
+		display: inline;
+		vertical-align: middle;
+		font-size: 1.6em;
+	}
+	
+	.flexbox & label {
+		margin-right: 10px;
+		align-self: center;//here, vertically aligns centre
+	}
+	input {		
+		flex: 2;//equal to flex: 2 1 0
+		margin-right: 10px;
+		//the below would be no-flex fallback for mobile
+		// display: block; 
+		// width: 100%; 
+	}
+	input.submit {
+		flex: 1;
+	}
+}
+
+//layout 
+.page-layout {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-bottom: 20px;
+
+	.left-col-item {
+		flex-grow: 1;
+		flex-basis: 0;//when wrap is on, this acts like min-width (or height if column)
+		background: #FF9933;
+	}
+	.right-col-item {
+		flex-grow: 2; //this means item gets 2x the amount of extra width than other item(s). 
+									//So with flex-basis:0, this will be 2x the width of the other item(s).
+		flex-basis: 0;
+		background: #CC9999;
+	}
+}
+
+
+//gallery
+//use set widths with mediaqueries to avoid the 'spare items' stretching to fill up the space
+//still having trouble - may be better to use the float to do this...
+.gallery {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-left: -20px;
+
+	.gallery-item {
+	//flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+		flex: 1 0 180px;
+		background: #336699;
+		text-align: center;
+		margin: 0 0 20px 20px;
+		width: 100%;
+		float:left;
+
+		@media screen and (min-width:600px){
+			max-width: 50%;
+		}
+		@media screen and (min-width:860px){
+			max-width: 33%;
+		}
+		@media screen and (min-width:1200px){
+			max-width: 24%;
+		}
+
+		
+		
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.gallery-item--last {
+		//flex: 1 0 100%;
+	}
+	
+}
+
+
+//equal height boxes
+.teasers {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	margin-left: -20px;
+
+	.no-flexbox & {//no-flex fallback
+		margin-left: 0;
+	}
+
+	.teaser-module {
+
+		flex: 1 0 220px;
+		//force width or use mediaqueries if wanting to avoid the over-stretch of the lone item
+		//max-width: 220px;
+
+		margin-left: 20px;
+		margin-bottom: 20px;
+		background: #339966;
+
+		//flexbox within a flexbox - this one's for pinning items to bottom:
+		display: table-cell; //no-flex fallback
+		display: flex;
+		flex-direction: column;
+
+		.no-flexbox & {//no-flex fallback
+			width: 25%;
+		}
+		
+		.teaser-content {
+			padding: 20px;
+		}
+		
+		.cta-link {
+			margin-top: auto;
+			display: block;
+			padding: 20px;
+		}
+	}
+	img {
+		width: 100%;
+	}
+}
+
+
+//pagination 
+// small screen - prev and next buttons placed above the pagination links,
+// medium screen - equal spacing edge to edge
+//large screen - center pagination
+.pagination {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+
+	@media screen and (min-width:860px) {
+		justify-content: center;
+		a {
+			margin: 0 10px;
+		}
+	}
+	
+	//using flexbox's order subproperty - downside: messes with visual vs tab order
+	li {
+		order: 2;
+		display: inline-block;
+
+
+	}
+	li:first-child { //'previous'
+		order: 0;
+		text-align: left;
+	}
+	li:last-child { //'next'
+		order: 1;
+		text-align: right;
+	}
+
+	.flexbox & {
+		li {
+			@media screen and (min-width: 600px){
+				order: 0;
+			}
+		}
+		li:first-child,
+		li:last-child {
+			width: 50%;
+			@media screen and (min-width: 600px){
+				order: 0;
+				width: auto;
+			}
+			
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

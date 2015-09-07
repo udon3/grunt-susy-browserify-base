@@ -1,0 +1,33 @@
+/*--------- base.scss ------------*/
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+	position: relative;
+}
+
+body {
+	font-size: 62.5%;
+	background-color: #CDE9FF;
+	background: #000;
+}
+
+p, li {
+	font-size: 1.6em;
+}
+
+//below was used for flexbox test
+// header,
+// main,
+// footer {
+// 	width: 90%;
+// 	margin: auto;
+// }
+// header {
+// 	text-align: center;
+// }

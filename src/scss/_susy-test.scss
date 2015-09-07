@@ -1,0 +1,146 @@
+// clearfix mixin - here because not using compass
+%clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+
+//override some susy global defaults (http://susydocs.oddbird.net/en/latest/settings/#global-defaults)
+// on the susy map:
+$susy: (
+  columns: 12, //tell susy to use a 12 col grid
+  container: 1120px, //translates to a max-width of 1120px
+  gutters: .5,
+  // gutters are set as a ratio on the size of the column (default is a quarter of column width)
+  // for explicit gutters - 20px gutters to 70px columns:
+  //gutters: 20px/70px
+
+  //overriding the use-custom settings
+  use-custom: (rem: true, clearfix: true),
+
+);
+@include border-box-sizing;
+
+
+//some fundamentals - principal susy mixins
+/*
+	@include container( [<length>] ); //if no number set, defaults to default setting
+	@include container; //sets max-width to auto for static grids
+	@include span( <width> [<wide / wider>] of <layout> [<last>] ); 
+								//width is number of cols ths element spans
+												//wide/wider refer to 1 or 2 gutters to be included
+																						//layout refers to total cols num
+																											//last item in row
+	span() function:
+		width: span(3 of 9); //just returns the width value
+		padding: span(1 of 9); //etc
+
+	gutter() function:
+		margin-right: gutter(9); //returns the width of a gutter for a 9 column layout
+*/
+
+.susynav {
+	width: 100%;
+	background: #ccc;
+}
+
+
+.container {
+	@include container(80em);
+	margin: gutter();
+	background: #000;
+	color: #fff;
+}
+
+main {
+	border:solid 1px #fff;
+}
+
+.content {
+  //@include span(12); 
+  width: 100%;
+  background: #99CC66;
+	padding: gutter();
+
+  @media (min-width: 700px) {
+    @include span(8); // set to 8-col width
+  }
+}
+
+
+.sidebar {
+  width: 100%;
+  background: #66CCCC;
+	padding: gutter();
+
+
+  img {
+  	display: none;
+  }
+
+  @media (min-width: 700px) {
+    @include span(4 last); // set to 4-col width, and mark as last item in row
+
+    img {
+    	display: block;
+  		width: 100%;
+    }
+  }
+}
+
+
+
+.social {
+	width: 100%;
+	padding: gutter();
+
+  clear: both;
+
+	&:after {
+	  @extend %clearfix; //custom placeholder (due to absence of compass)
+	}
+	ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	}
+	.social__list-item {
+		@include gallery(2 of 10);
+    margin-bottom: gutter(10); 
+
+
+		// &:last-child {
+		// 	@include last;
+		// }
+
+		@media (min-width: 700px){
+			@include gallery(1 of 10);			
+    	margin-bottom: 0; 
+		}
+		
+
+		img {
+			display: block;
+			width: 100%;
+		}
+	}
+}
+
+
+
+footer {
+	width: 100%;
+}
+
+
+
+
+
+
+
+
+
+

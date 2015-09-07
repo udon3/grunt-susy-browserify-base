@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+	<title>Flexbox test</title>
+	<link rel="stylesheet" href="css/all.css">
+	<script type="text/javascript" src="js/lib/modernizr.custom.37637.js"></script>
+</head>
+<body>
+	
+
+	<div class="container">
+		<header>
+			<img src="http://placehold.it/200x100/333300/ffffff?text=logo" alt="" class="log">
+
+			<!-- HEAD NAVIGATION -->
+			<nav role="navigation">
+				<ul class="nav-list">
+					<li><a href="#">home</a></li>
+					<li><a href="#">about</a></li>
+					<li class="other-side"><a href="#">contact</a></li>
+					<li><a href="#">one last</a></li>
+				</ul>
+
+			</nav>
+		</header>
+
+		<main>
+			<h1>Flexbox notes</h1>
+			<p><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">https://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></p>
+	    <p><a href="http://www.slideshare.net/zomigi/putting-flexbox-into-practice">http://www.slideshare.net/zomigi/putting-flexbox-into-practice</a></p>
+			<h2>Browser support</h2>
+			<p>IE10+ and up, all modern browsers (but should use vendor prefixes - use autoprefixer or sass mixin)</p>
+			<h2>Ready but not quite</h2>
+			<p>For now, may be prudent to only use on small-scale modules (as progressive enhancement)</p>
+
+			<!-- SINGLE LINE FORM -->
+			<form action="" class="flex-form">
+				<section>
+					<label for="search">Search</label>
+					<input id="search" type="text" placeholder="Search text">
+					<input class="submit" type="submit" value="submit">	
+				</section>				
+			</form>
+
+			<!-- PAGE LAYOUT -->
+			<section>
+				<h2>Page layout</h2>
+
+			</section>
+			<div class="page-layout">
+				<div class="left-col-item">
+					<p>left column</p>
+				</div>
+				<div class="right-col-item">
+					<p>right column</p>
+				</div
+
+			</div>
+
+			<!-- GALLERY -->
+			<div>
+				<h2>Gallery</h2>
+				<section class="gallery">
+					<figure class="gallery-item"><img src="http://placehold.it/100x70/330033/ffffff?text=box1" alt=""></figure>
+					<figure class="gallery-item"><img src="http://placehold.it/100x70/330033/ffffff?text=box2" alt=""><figcaption>A big long text... A big long text... A big long text... A big long text... A big long text... A big long text... A big long text... </figcaption></figure>
+					<figure class="gallery-item"><img src="http://placehold.it/100x70/330033/ffffff?text=box3" alt=""></figure>
+					<figure class="gallery-item"><img src="http://placehold.it/100x70/330033/ffffff?text=box4" alt=""></figure>
+					<figure class="gallery-item"><img src="http://placehold.it/100x70/330033/ffffff?text=box5" alt=""><figcaption>Some text</figcaption></figure>
+					<figure class="gallery-item"><img src="http://placehold.it/100x70/330033/ffffff?text=box6" alt=""></figure>
+					<figure class="gallery-item"><img src="http://placehold.it/100x70/330033/ffffff?text=box7" alt=""></figure>
+					<figure class="gallery-item"><img src="http://placehold.it/100x70/330033/ffffff?text=box8" alt=""></figure>
+					<figure class="gallery-item gallery-item--last"><img src="http://placehold.it/100x70/330033/ffffff?text=box9" alt=""></figure>
+				</section>
+			</div>
+			
+			
+			<!-- EQUAL HEIGHT BOXES -->
+
+			<section>
+
+				<div class="teasers">
+					<div class="teaser-module">					
+						<a href="#"><img src="http://placehold.it/200x50" alt=""></a>		
+						<div class="teaser-content">
+							<h2>teaser 1</h2>
+							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+						</div>			
+							<a class="cta-link" href="#">Link to article</a>
+						
+					</div>
+					<div class="teaser-module">
+						<a href="#"><img src="http://placehold.it/200x50" alt=""></a>			
+						<div class="teaser-content">
+							<h2>teaser 2</h2>
+							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+						</div>		
+							<a class="cta-link" href="#">Link to article</a>
+						
+					</div>
+					<div class="teaser-module">
+						<a href="#"><img src="http://placehold.it/200x50" alt=""></a>		
+						<div class="teaser-content">
+							<h2>teaser 3</h2>
+							<p>Pellentesque habitant morbi.</p>
+						</div>			
+							<a class="cta-link" href="#">Link to article</a>	
+						
+					</div>
+					<div class="teaser-module">
+						<a href="#"><img src="http://placehold.it/200x50" alt=""></a>			
+						<div class="teaser-content">
+							<h2>teaser 4</h2>
+							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+						</div>		
+						
+						<a class="cta-link" href="#">Link to article</a>
+					</div>
+				</div>
+				
+			</section>
+
+			<!-- PAGINATION -->
+			<section role="navigation">
+			<h2>Pagination</h2>
+				<ul class="pagination">
+					<li><a href="">Previous</a></li>
+					<li><a href="">1</a></li>
+					<li><a href="">2</a></li>
+					<li><a href="">3</a></li>
+					<li><a href="">4</a></li>
+					<li><a href="">5</a></li>
+					<li><a href="">6</a></li>
+					<li><a href="">7</a></li>
+					<li><a href="">8</a></li>
+					<li><a href="">Next</a></li>
+				</ul>
+			</section>
+		</main>
+
+		<footer>
+			<ul class="footerlinks">
+				<li><a href="#">sitemap</a></li>
+				<li><a href="#">accessibility</a></li>
+				<li><a href="#">terms</a></li>
+			</ul>
+		</footer>
+		
+	</div>
+</body>
+</html>
