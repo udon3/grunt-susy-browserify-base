@@ -13,14 +13,14 @@
 $susy: (
   columns: 12, //tell susy to use a 12 col grid
   container: 1120px, //translates to a max-width of 1120px
-  gutters: .5,
+  gutters: .25,
   // gutters are set as a ratio on the size of the column (default is a quarter of column width)
   // for explicit gutters - 20px gutters to 70px columns:
   //gutters: 20px/70px
 
   //overriding the use-custom settings
   use-custom: (rem: true, clearfix: true),
-
+  debug: (image: show) //enable debug with susy generated backgrounds(http://www.zell-weekeat.com/susy-grid-background-image/)
 );
 @include border-box-sizing;
 
@@ -42,6 +42,42 @@ $susy: (
 		margin-right: gutter(9); //returns the width of a gutter for a 9 column layout
 */
 
+//Debug with susy generated backgrounds:
+//(http://www.zell-weekeat.com/susy-grid-background-image/)
+//desktop-first direction
+// .wrap {
+//   @include container(); 
+//   height: 100vh;
+//   background-color: #fff;
+
+//   @media (max-width: 800px) {
+//     @include show-grid(8);
+//   }
+
+//   @media (max-width: 600px) {
+//     @include show-grid(4);
+//   }
+// }
+
+//mobile-first direction:
+.wrap {
+  @include container(); 
+  @include show-grid(4);
+  height: 100vh;
+  background-color: #fff;
+
+  @media (min-width: 600px) {
+    @include show-grid(8);
+  }
+
+  @media (min-width: 800px) {
+    @include show-grid(12);
+  }
+
+}
+
+//--------------------------
+
 .susynav {
 	width: 100%;
 	background: #ccc;
@@ -49,8 +85,8 @@ $susy: (
 
 
 .container {
-	@include container(80em);
-	margin: gutter();
+	@include container(); //enter a max-width value to override $susy map setting
+	//margin: gutter();
 	background: #000;
 	color: #fff;
 }
@@ -76,7 +112,6 @@ main {
   background: #66CCCC;
 	padding: gutter();
 
-
   img {
   	display: none;
   }
@@ -91,8 +126,13 @@ main {
   }
 }
 
+// asymmetric layout (http://www.zell-weekeat.com/asymmetric-layouts-with-susy/)
+// for Asymmetric grids, global columns and output settings need to be updated:
+// - set `output` to `isolate`
+// - set columns as a sass list
 
-
+// full width with 10 columns, using 'gallery' 
+//gallery - shortcut (mixin) for building a gellery (more on shortcuts: http://susy.readthedocs.org/en/latest/toolkit/)
 .social {
 	width: 100%;
 	padding: gutter();
@@ -102,15 +142,15 @@ main {
 	&:after {
 	  @extend %clearfix; //custom placeholder (due to absence of compass)
 	}
+  
 	ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 	}
 	.social__list-item {
-		@include gallery(2 of 10);
+		@include gallery(2 of 10); //"of" keyword specifies the context in this instance, so context of 10 columns (context = number of columns in the parent element)
     margin-bottom: gutter(10); 
-
 
 		// &:last-child {
 		// 	@include last;
@@ -119,8 +159,7 @@ main {
 		@media (min-width: 700px){
 			@include gallery(1 of 10);			
     	margin-bottom: 0; 
-		}
-		
+		}		
 
 		img {
 			display: block;

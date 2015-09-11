@@ -81,7 +81,7 @@ module.exports = function(grunt){
 				sourceMap: true //don't need this, since only one file
 			},
 			target: {
-			    files: {
+			  files: {
 	        'dist/js/app.js': ['src/js/app.js']
 	      }
 			}
