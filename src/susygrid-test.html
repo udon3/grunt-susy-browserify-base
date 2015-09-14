@@ -2,89 +2,68 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Susygrid test</title>
+	<title>Susygrid test - asymmetric layout</title>
 
 	<link rel="stylesheet" href="css/all.css">
 </head>
 <body>
-	<!-- http://www.zell-weekeat.com/susy-grid-background-image/ -->
-	<div class="wrap"></div>
+	<!-- http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ -->
+	
+	<div class="wrap">
+	<h1>Asymmetric layout - following a tutorial</h1>
+		<p><a href="http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ ">http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ </a></p>
+		<p><code>susy-test_1</code>: very first susy layout</p>
 
+		<p><code>susy-test_2</code>: asymmetric layout</p>
 
+		<p><code>susy-test_3.scss</code></p>
+		<ul>
+			<li>using the built-in <code>susy-breakpoint()</code> mixin for mediaqueries</li>
+			<li>using $maps to set different susy layouts to use at diff break points</li>
+			<li></li>
+		</ul>
 
-	<div class="container">
-		<header>
-			<img src="http://placehold.it/200x100/333300/ffffff?text=logo" alt="" class="log">
+	  <div class="sidebar-one">
+	  	<h2>Sidebar 1</h2>
+	  	<p><code>@include span(1 first)</code></p>
+	  </div>
 
-			<!-- HEAD NAVIGATION -->
-			<nav role="navigation">
-				<ul class="susy-nav-list">
-					<li><a href="#">home</a></li>
-					<li><a href="#">about</a></li>
-					<li><a href="#">contact</a></li>
-					<li><a href="#">one last</a></li>
-				</ul>
+	  <div class="content">
+	  	<h2>Content</h2>
+			<p>Settings for asymmetric layout</p>
 
-			</nav>
+			<h3>susy globals:</h3>
+			<p>
+			<code> output: isolate, 
+			<br>columns: 1 2 3 2 1</code></p>
+			<p>note: the columns value is a sass list. It says: the layout consists of 5 base columns.</p>
+			<p><code>isolate</code> fixes sub-pixel rounding bugs</p>
 
-		<main>
-			<div class="content">
-				<h1>Messing about with susygrid</h1>
+			<h3>$location mixin</h3>
+			<p><code>isolate</code> output mode, requires $location (<code>first, last, at n</code>) to be specified in the span() mixin.</p>
 
-				<p>This dev project has been set up for using Susy2 grid system, with Grunt and Bower.</p>
+			<h3>This content container:</h3>
+			<p><code>span(3 at 2)</code></p>
+			<p>= spans 3 columns - <em>it has a context of (2 3 2)</em> , and starts at 2nd base column ((1 *2 3 2* 1)</p>
+	  	
+	  	<h3>Nested elements</h3>
+	  	<p>"It's all about the context": the content container also has an asymmetric grid, which is (2 3 2). So nested elements need this passed into the span mixin:</p>
 
-				<p>So I've tried out flexbox, which would be great for use in smaller projects and modules and used sparingly for now (no universal support, and doesn't really replace a grid system.)</p>
+	    <div class="nest-one">
+	    	<h2>Nest One</h2>
+	    	<p><code>span(1 of (2 3 2) first)</code></p>
+	    </div>
+	    <div class="nest-two">
+	   	 <h2>Nest Two</h2>
+	   	 <p><code>span(2 of (2 3 2) last)</code></p>
+	    </div>
 
-				<p>For the grid system I'm trying out the much talked about susygrid. From everything I've seen and heard so far, it feels like it's generally more used and loved in the front-end dev community.</p>
+	  </div>
+	  <div class="sidebar-two">
+	  	<h2>Sidebar 2</h2>
+	  	<p><code>@include span(1 last)</code></p>
+	  </div>
 
-				<p>Maybe later I could introduce flexbox elements into modules within the grid...?</p>
-
-
-			</div>
-
-			<div class="sidebar">
-				<img src="http://placehold.it/200x100/ff0000/000000" alt="">
-				<h2>susy global settings</h2>
-				<p>Read more</p>
-				<ul>
-					<li><a href="http://www.zell-weekeat.com/asymmetric-layouts-with-susy/">asymmetric grid layout</a></li>
-					<li><a href="http://www.zell-weekeat.com/susy-grid-background-image/">Debug susy layout using susy-generated backgrounds</a></li>
-					<li><a href="">Aliquam tincidunt mauris eu risus.</a></li>
-					<li><a href="">Vestibulum auctor dapibus neque.</a></li>
-				</ul>
-			</div>
-
-			<div class="asymmetric">
-				<div class="asymmetric__sidebar">
-					asymm sidebar
-				</div>
-				<div class="asymmetric__content">
-					asymm content
-				</div>
-			</div>
-			
-			<div class="social">
-		    <ul>
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		      <li class="social__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
-		    </ul>
-		  </div>
-		</main>
-		<footer>
-			<ul class="footerlinks">
-				<li><a href="#">sitemap</a></li>
-				<li><a href="#">accessibility</a></li>
-				<li><a href="#">terms</a></li>
-			</ul>
-		</footer>
 	</div>
 	
 </body>

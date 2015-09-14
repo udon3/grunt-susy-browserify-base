@@ -19,7 +19,7 @@ $susy: (
   //gutters: 20px/70px
 
   //overriding the use-custom settings
-  use-custom: (rem: true, clearfix: true),
+  use-custom: (rem: true),
   debug: (image: show) //enable debug with susy generated backgrounds(http://www.zell-weekeat.com/susy-grid-background-image/)
 );
 @include border-box-sizing;
@@ -126,10 +126,7 @@ main {
   }
 }
 
-// asymmetric layout (http://www.zell-weekeat.com/asymmetric-layouts-with-susy/)
-// for Asymmetric grids, global columns and output settings need to be updated:
-// - set `output` to `isolate`
-// - set columns as a sass list
+
 
 // full width with 10 columns, using 'gallery' 
 //gallery - shortcut (mixin) for building a gellery (more on shortcuts: http://susy.readthedocs.org/en/latest/toolkit/)

@@ -1,0 +1,108 @@
+// clearfix mixin - here because not using compass
+%clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+
+
+//override some susy global defaults (http://susydocs.oddbird.net/en/latest/settings/#global-defaults)
+// on the susy map:
+$susy: (
+  //asymmetric layout 
+  output: isolate,
+  columns: 1 2 3 2 1, //using a sass list - creates 5 columns of different column widths ('asymmetric grid with 5 columns')
+  debug: (image: show) //enable debug with susy generated backgrounds(http://www.zell-weekeat.com/susy-grid-background-image/)
+);
+@include border-box-sizing;
+
+//breakpoints:
+$bp-med: 600px;
+$bp-lrg: 800px;
+
+//maps for various susy layouts for dfferent screen sizes
+$sml: (columns: 1, gutter: 1/4);//
+$med: ();
+$lrg: ();
+//@include layout($sml);
+
+
+.wrap {
+  @include container(1140px);
+}
+
+.sidebar-one {
+  @include susy-breakpoint($bp-lrg){
+    @include span(1 first);
+  }
+  
+}
+
+.sidebar-two {
+  @include susy-breakpoint($bp-lrg){
+    @include span(1 last);
+  }
+}
+
+.content {
+  @include susy-breakpoint($bp-med){
+    @include span(3 at 2);
+    float: none;
+    overflow: hidden;
+  }
+  @include susy-breakpoint($bp-lrg){
+    @include span(3 at 2);
+  }
+  
+}
+
+.nest-one {
+  @include susy-breakpoint($bp-med){
+    @include span(1 of (2 3 2) first);
+  }
+  
+}
+
+.nest-two {
+  @include susy-breakpoint($bp-med){
+    @include span(2 of (2 3 2) last);
+  }
+}
+
+// Demo CSS 
+
+.wrap {
+  height: 100vh
+}
+
+.sidebar-one, .sidebar-two {
+  background: #996699; 
+  //height: 40vh;
+}
+
+.nest-one,.nest-two {
+  background: LavenderBlush; 
+  //height: 40vh;
+}
+
+.content {
+  background: #99cccc; 
+  //height: 80vh;
+}
+
+h2 {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
