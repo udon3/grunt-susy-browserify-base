@@ -8,13 +8,13 @@
   }
 }
 
-
+  
 //override some susy global defaults (http://susydocs.oddbird.net/en/latest/settings/#global-defaults)
 // on the susy map:
 $susy: (
   //asymmetric layout 
   output: isolate,
-  columns: 1 2 3 2 1, //using a sass list - creates 5 columns of different column widths ('asymmetric grid with 5 columns')
+  //columns will be set according to viewport size
   debug: (image: show) //enable debug with susy generated backgrounds(http://www.zell-weekeat.com/susy-grid-background-image/)
 );
 @include border-box-sizing;
@@ -24,78 +24,98 @@ $bp-med: 600px;
 $bp-lrg: 800px;
 
 //maps for various susy layouts for dfferent screen sizes
-$sml: (columns: 1, gutter: 1/4);//
-$med: ();
-$lrg: ();
-//@include layout($sml);
+$sml: (columns: 1 7, gutter: 1/4);//
+$med: (columns: 1 7 7 1, gutter: 1/5);
+$lrg: (columns: 4 1 3 4 3, gutter: 1/10);
 
+//set default for mobile
+@include layout($sml);
 
 .wrap {
-  @include container(1140px);
-}
+  @include container;
 
-.sidebar-one {
-  @include susy-breakpoint($bp-lrg){
-    @include span(1 first);
+  @include susy-breakpoint($bp-med, $med) { //susy-breakpoint($query, $layout, $no-query) - http://susy.readthedocs.org/en/latest/toolkit/#breakpoint
+    max-width: 100%;
+    @include show-grid; //shows this grid bg
   }
-  
-}
 
-.sidebar-two {
-  @include susy-breakpoint($bp-lrg){
-    @include span(1 last);
+  @include susy-breakpoint($bp-lrg, $lrg) {
+    @include show-grid;
   }
 }
 
 .content {
-  @include susy-breakpoint($bp-med){
-    @include span(3 at 2);
+  @extend %clearfix;
+  @include susy-breakpoint($bp-med, $med) {
+    @include span(2 at 2);
+    clear: both;
     float: none;
-    overflow: hidden;
+
+  }
+   @include susy-breakpoint($bp-lrg, $lrg) {
+    @include span(3 at 2);
+    clear: none;
+  }
+}
+
+@include susy-breakpoint($bp-lrg, $lrg) {
+  .sidebar-one {
+    @include span(1 first);
+  }
+  .sidebar-two {
+    @include span(1 last);
+  }
+}
+
+//http://susy.readthedocs.org/en/latest/toolkit/#nested-context
+//Still unsure about nested(), so doing it the simple way:
+.content__nested1 {
+  @include susy-breakpoint($bp-med){
+    @include span(1 of (7 7) first);
   }
   @include susy-breakpoint($bp-lrg){
-    @include span(3 at 2);
+    @include span(1 of (1 3 4) at 2);
   }
-  
 }
 
-.nest-one {
+.content__nested2 {
   @include susy-breakpoint($bp-med){
-    @include span(1 of (2 3 2) first);
+    @include span(1 of (7 7) last);
   }
-  
-}
-
-.nest-two {
-  @include susy-breakpoint($bp-med){
-    @include span(2 of (2 3 2) last);
+  @include susy-breakpoint($bp-lrg){
+    @include span(1 of (1 3 4) at 3);
   }
 }
 
 // Demo CSS 
 
 .wrap {
-  height: 100vh
+  //height: 100vh
 }
 
 .sidebar-one, .sidebar-two {
-  background: #996699; 
+  background: #669900; 
   //height: 40vh;
 }
 
-.nest-one,.nest-two {
-  background: LavenderBlush; 
+.content__nested1,.content__nested2 {
+  background: #9933CC; 
   //height: 40vh;
 }
+.content2__nested1,.content2__nested2 {
+  background: #5533ff; 
+}
+
 
 .content {
-  background: #99cccc; 
+  background: #00FFFF; 
   //height: 80vh;
 }
 
 h2 {
   text-align: center;
 }
+
 
 
 

@@ -1,0 +1,329 @@
+//TRY USING with-layout() mixin so I can have all 3 susy test cases running at the same time.
+
+// clearfix mixin - here because not using compass
+%clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+
+  
+//override some susy global defaults (http://susydocs.oddbird.net/en/latest/settings/#global-defaults)
+// on the susy map:
+$susy: (
+  //asymmetric layout 
+  output: isolate,
+  //columns will be set according to viewport size
+  //debug: (image: show) //enable debug with susy generated backgrounds(http://www.zell-weekeat.com/susy-grid-background-image/)
+  //debug: (image: show-columns)
+);
+@include border-box-sizing;
+
+//breakpoints:
+$bp-med: 600px;
+$bp-lrg: 800px;
+
+
+
+
+// susy-test_1 grid layout -----------------------
+$susy: (
+  debug: (image: show) //enable debug with susy generated backgrounds(http://www.zell-weekeat.com/susy-grid-background-image/)
+);
+@include with-layout(12 .25 1120px) {
+  @include border-box-sizing;
+
+  .susy-test-1 {
+    //mobile-first direction:
+    .wrap {
+      @include container(); 
+      @include show-grid(4);
+      height: 10vh;
+      background-color: #fff;
+
+      @media (min-width: 600px) {
+        @include show-grid(8);
+      }
+
+      @media (min-width: 800px) {
+        @include show-grid(12);
+      }
+
+    }
+
+    //--------------------------
+
+    .susynav {
+      width: 100%;
+      background: #ccc;
+    }
+
+
+    .container {
+      @include container(); //enter a max-width value to override $susy map setting
+      //margin: gutter();
+      background: #000;
+      color: #fff;
+    }
+
+    main {
+      border:solid 1px #fff;
+    }
+
+    .content {
+      //@include span(12); 
+      width: 100%;
+      background: #99CC66;
+      padding: gutter();
+
+      @media (min-width: 700px) {
+        @include span(8); // set to 8-col width
+      }
+    }
+
+
+    .sidebar {
+      //width: 100%;
+      background: #66CCCC;
+      padding: gutter();
+
+      img {
+        display: none;
+      }
+
+      @media (min-width: 700px) {
+        @include span(4 no-gutter); // set to 4-col width, and mark as last item in row
+
+        // img {
+        //   display: block;
+        //   width: 100%;
+        // }
+      }
+    }
+
+
+
+    // full width with 10 columns, using 'gallery' 
+    //gallery - shortcut (mixin) for building a gellery (more on shortcuts: http://susy.readthedocs.org/en/latest/toolkit/)
+    .gallery {
+      width: 100%;
+      padding: gutter();
+
+      clear: both;
+
+      &:after {
+        @extend %clearfix; //custom placeholder (due to absence of compass)
+      }
+      
+      ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      }
+      .gallery__list-item {
+        @include gallery(2 of 10); //"of" keyword specifies the context in this instance, so context of 10 columns (context = number of columns in the parent element)
+        margin-bottom: gutter(10); 
+
+        // &:last-child {
+        //  @include last;
+        // }
+
+        @media (min-width: 700px){
+          @include gallery(1 of 10);      
+          margin-bottom: 0; 
+        }   
+
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+
+    footer {
+      width: 100%;
+    }
+  }
+}
+
+// susy-test_2 grid layout -----------------------
+$susy: (
+  debug: (image: show) //enable debug with susy generated backgrounds(http://www.zell-weekeat.com/susy-grid-background-image/)
+);
+$layout2: (columns: 1 2 3 2 1, gutter: 1/8);
+
+@include with-layout($layout2) {
+  .susy-test-2 {
+    .wrap {
+      @include container(1140px);
+      @include show-grid;
+    }
+
+    .sidebar-one {
+      @include susy-breakpoint($bp-lrg){
+        @include span(1 first);
+      }
+      
+    }
+
+    .sidebar-two {
+      @include susy-breakpoint($bp-lrg){
+        @include span(1 last);
+      }
+    }
+
+    .content {
+      @include susy-breakpoint($bp-med){
+        @include span(3 at 2);
+        float: none;
+        overflow: hidden;
+      }
+      @include susy-breakpoint($bp-lrg){
+        @include span(3 at 2);
+      }
+      
+    }
+
+    .nest-one {
+      @include susy-breakpoint($bp-med){
+        @include span(1 of (2 3 2) first);
+      }
+      
+    }
+
+    .nest-two {
+      @include susy-breakpoint($bp-med){
+        @include span(2 of (2 3 2) last);
+      }
+    }
+
+    // Demo CSS 
+
+    .wrap {
+      height: 100vh
+    }
+
+    .sidebar-one, .sidebar-two {
+      background: #996699; 
+      //height: 40vh;
+    }
+
+    .nest-one,.nest-two {
+      background: LavenderBlush; 
+      //height: 40vh;
+    }
+
+    .content {
+      background: #99cccc; 
+      //height: 80vh;
+    }
+
+    h2 {
+      text-align: center;
+    }
+  } 
+  
+}
+
+
+// susy-test_3 grid layout -----------------------
+$susy: (
+  debug: (image: show) //enable debug with susy generated backgrounds(http://www.zell-weekeat.com/susy-grid-background-image/)
+);
+
+//maps for various susy layouts for dfferent screen sizes
+$sml: (columns: 1 7, gutter: 1/4);//
+$med: (columns: 1 7 7 1, gutter: 1/5);
+$lrg: (columns: 4 1 3 4 3, gutter: 1/10);
+
+@include with-layout($sml) {
+  .susy-test-3 {
+    .wrap {
+      @include container;
+
+      @include susy-breakpoint($bp-med, $med) { //susy-breakpoint($query, $layout, $no-query) - http://susy.readthedocs.org/en/latest/toolkit/#breakpoint
+        max-width: 100%;
+        @include show-grid; //shows this grid bg
+      }
+
+      @include susy-breakpoint($bp-lrg, $lrg) {
+        @include show-grid;
+      }
+    }
+
+    .content {
+      @extend %clearfix;
+      @include susy-breakpoint($bp-med, $med) {
+        @include span(2 at 2);
+        clear: both;
+        float: none;
+
+      }
+       @include susy-breakpoint($bp-lrg, $lrg) {
+        @include span(3 at 2);
+        clear: none;
+      }
+    }
+
+    @include susy-breakpoint($bp-lrg, $lrg) {
+      .sidebar-one {
+        @include span(1 first);
+      }
+      .sidebar-two {
+        @include span(1 last);
+      }
+    }
+
+    //http://susy.readthedocs.org/en/latest/toolkit/#nested-context
+    //Still unsure about nested(), so doing it the simple way:
+    .content__nested1 {
+      @include susy-breakpoint($bp-med){
+        @include span(1 of (7 7) at 1);
+      }
+      @include susy-breakpoint($bp-lrg){
+        @include span(1 of (1 3 4) at 2); //something wrong here: span(2 at 1), span(1 at 1)  render correctly, but not this?!
+      }
+    }
+
+    .content__nested2 {
+      @include susy-breakpoint($bp-med){
+        @include span(1 of (7 7) last);
+      }
+      @include susy-breakpoint($bp-lrg){
+        @include span(1 of (1 3 4) at 3);
+      }
+    }
+
+    // Demo CSS 
+
+    .wrap {
+      //height: 100vh
+    }
+
+    .sidebar-one, .sidebar-two {
+      background: #669900; 
+      //height: 40vh;
+    }
+
+    .content__nested1,.content__nested2 {
+      background: #9933CC; 
+      //height: 40vh;
+    }
+    .content2__nested1,.content2__nested2 {
+      background: #5533ff; 
+    }
+
+
+    .content {
+      background: #00FFFF; 
+      //height: 80vh;
+    }
+
+    h2 {
+      text-align: center;
+    }
+  }
+}

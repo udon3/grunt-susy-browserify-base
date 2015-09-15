@@ -63,7 +63,7 @@ $susy: (
 .wrap {
   @include container(); 
   @include show-grid(4);
-  height: 100vh;
+  height: 10vh;
   background-color: #fff;
 
   @media (min-width: 600px) {

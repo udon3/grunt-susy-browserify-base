@@ -23,11 +23,6 @@ $susy: (
 $bp-med: 600px;
 $bp-lrg: 800px;
 
-//maps for various susy layouts for dfferent screen sizes
-$sml: (columns: 1, gutter: 1/4);//
-$med: ();
-$lrg: ();
-//@include layout($sml);
 
 
 .wrap {

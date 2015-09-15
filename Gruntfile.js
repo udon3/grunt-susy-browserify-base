@@ -12,7 +12,7 @@ module.exports = function(grunt){
       dist: {
         src: 'src/scss/import-all.scss',
         dest: 'src/scss/_pre-postcss.css', //postCSS wont see a scss file - needs to be css
-      },
+      }
     },
     //postCSS runs on the concatenated, compiled CSS file in /src/css/, 
     //and generates new (and final) css file in /dist/css/

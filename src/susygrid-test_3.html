@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Susygrid test - asymmetric layout</title>
+
+	<link rel="stylesheet" href="css/all.css">
+	
+</head>
+<body class="susy-test-3">
+	<!-- http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ -->
+	
+	<div class="wrap">
+		<h1>Asymmetric layout - following a tutorial</h1>
+		<p><a href="http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ ">http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ </a></p>
+		<p><code>susy-test_1</code>: very first susy layout</p>
+
+		<p><code>susy-test_2</code>: asymmetric layout</p>
+
+		<p><code>susy-test_3.scss</code></p>
+		<ul>
+			<li>using the built-in <code>susy-breakpoint()</code> mixin for mediaqueries</li>
+			<li>using $maps to set different susy layouts to use at diff break points</li>
+			<li></li>
+		</ul>
+
+	  <div class="sidebar-one">
+	  	<h2>Sidebar 1</h2>
+	  	<p><code>@include span(1 first)</code></p>
+	  </div>
+
+	  <div class="content">
+	  	<h2>Content</h2>
+			<p>Settings for asymmetric layout</p>
+<pre>
+//maps for various susy layouts for dfferent screen sizes
+$sml: (columns: 1 7, gutter: 1/4);
+$med: (columns: 1 7 7 1, gutter: 1/5);
+$lrg: (columns: 4 1 3 4 1, gutter: 1/10);
+</pre>
+
+			<h3>susy globals:</h3>
+			<code> output: isolate</code>
+			
+
+			<h3>This content container:</h3>
+			<p><code>span(2 at 2)</code> for medium</p>
+			<p><code>span(3 at 2)</code> for large</p>
+			
+	  	<h3>Nested elements</h3>
+	  	<p>Still unsure about <code>nested()</code>, so doing it the simple way:</p>
+	    <div class="content__nested1">
+	    	<h2>Nest One</h2>
+	    	<p>medium:<code>span(1 of (7 7) first)</code></p>
+	    	<p>large:<code>span(1 of (1 3 4) at 2)</code> </p>
+	    </div>
+	    <div class="content__nested2">
+				<h2>Nest Two</h2>				
+	    	<p>medium:<code>span(1 of (7 7) last)</code></p>
+	    	<p>large:<code>span(1 of (1 3 4) at 3)</code></p>
+	    </div>
+
+	  </div>
+
+	  <!-- <div class="content2">
+		  <div class="content2__nested1">
+	    	<h2>Not nested inside content</h2>
+	    	<p><code>span(1 at 2);</code></p>
+	    </div>
+	    <div class="content2__nested2">
+	   	 <h2>Not nested inside content</h2>
+	   	 <p><code>span(1 at 3);</code></p>
+	    </div>	
+	  </div> -->
+    
+
+
+	  <div class="sidebar-two">
+	  	<h2>Sidebar 2</h2>
+	  	<p><code>@include span(1 last)</code></p>
+	  </div>
+
+	</div>
+	
+</body>
+</html>

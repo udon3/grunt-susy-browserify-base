@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Susygrid test - asymmetric layout</title>
+
+	<link rel="stylesheet" href="css/all.css">
+	
+</head>
+<body>
+	<!-- http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ -->
+	
+	<!-- SUSY TEST 1 -->
+	<div class="susy-test-1">
+		<div class="wrap"></div>
+
+		<div class="container">
+			<header>
+				<img src="http://placehold.it/200x100/333300/ffffff?text=logo" alt="" class="log">
+				<p>header</p>
+			</header>
+			<main>
+				<div class="content">
+					<h1>Susy test 1 layout</h1>
+
+				</div>
+
+				<div class="sidebar">
+					<img src="http://placehold.it/200x100/ff0000/000000" alt="">
+					<h2>Sidebar</h2>
+					
+				</div>
+
+				<!-- <div class="asymmetric">
+					<div class="asymmetric__sidebar">
+						asymm sidebar
+					</div>
+					<div class="asymmetric__content">
+						asymm content
+					</div>
+				</div> -->
+				
+				<div class="gallery">				
+			    <ul>
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			      <li class="gallery__list-item"><img src="http://placehold.it/100x100" alt=""></li> 
+			    </ul>
+			  </div>
+			</main>
+			<footer>
+				<p>footer</p>
+			</footer>
+		</div>
+
+	</div>
+	
+	<!-- SUSY TEST 2 -->
+	<div class="susy-test-2">
+		
+		<div class="wrap">
+			<h1>Susy test 2: Asymmetric layout #1 - following a tutorial</h1>
+			<p><a href="http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ ">http://www.zell-weekeat.com/asymmetric-layouts-with-susy/ </a></p>
+			<p><code>susy-test_1</code>: very first susy layout</p>
+
+			<p><code>susy-test_2</code>: asymmetric layout</p>
+
+			<p><code>susy-test_3.scss</code></p>
+			<ul>
+				<li>using the built-in <code>susy-breakpoint()</code> mixin for mediaqueries</li>
+			</ul>
+
+		  <div class="sidebar-one">
+		  	<h2>Sidebar 1</h2>
+		  	<p><code>@include span(1 first)</code></p>
+		  </div>
+
+		  <div class="content">
+		  	<h2>Content</h2>
+				<p>Settings for asymmetric layout</p>
+
+				<h3>susy globals:</h3>
+				<p>
+				<code> output: isolate, 
+				<br>columns: 1 2 3 2 1</code></p>
+				<p>note: the columns value is a sass list. It says: the layout consists of 5 base columns.</p>
+				<p><code>isolate</code> fixes sub-pixel rounding bugs</p>
+
+				<h3>$location mixin</h3>
+				<p><code>isolate</code> output mode, requires $location (<code>first, last, at n</code>) to be specified in the span() mixin.</p>
+
+				<h3>This content container:</h3>
+				<p><code>span(3 at 2)</code></p>
+				<p>= spans 3 columns - <em>it has a context of (2 3 2)</em> , and starts at 2nd base column ((1 *2 3 2* 1)</p>
+		  	
+		  	<h3>Nested elements</h3>
+		  	<p>"It's all about the context": the content container also has an asymmetric grid, which is (2 3 2). So nested elements need this passed into the span mixin:</p>
+
+		    <div class="nest-one">
+		    	<h2>Nest One</h2>
+		    	<p><code>span(1 of (2 3 2) first)</code></p>
+		    </div>
+		    <div class="nest-two">
+		   	 <h2>Nest Two</h2>
+		   	 <p><code>span(2 of (2 3 2) last)</code></p>
+		    </div>
+
+		  </div>
+		  <div class="sidebar-two">
+		  	<h2>Sidebar 2</h2>
+		  	<p><code>@include span(1 last)</code></p>
+		  </div>
+
+		</div>
+	</div>
+
+	<!-- SUSY TEST 3 -->
+	<section class="susy-test-3">
+		<div class="wrap">
+			<h1>Susy test 3: Asymmetric layout #2</h1>
+
+			<ul>
+				<li>using the built-in <code>susy-breakpoint()</code> mixin for mediaqueries</li>
+				<li>using $maps to set different susy layouts to use at diff break points</li>
+				<li></li>
+			</ul>
+
+		  <div class="sidebar-one">
+		  	<h2>Sidebar 1</h2>
+		  	<p><code>@include span(1 first)</code></p>
+		  </div>
+
+		  <div class="content">
+		  	<h2>Content</h2>
+
+				<h3>susy globals:</h3>
+				<code> output: isolate</code>
+				
+
+				<h3>This content container:</h3>
+				<p><code>span(2 at 2)</code> for medium</p>
+				<p><code>span(3 at 2)</code> for large</p>
+				
+		  	<h3>Nested elements</h3>
+		  	<p>Still unsure about <code>nested()</code>, so doing it the simple way:</p>
+		    <div class="content__nested1">
+		    	<h2>Nest One</h2>
+		    	<p>medium:<code>span(1 of (7 7) first)</code></p>
+		    	<p>large:<code>span(1 of (1 3 4) at 2)</code>(unexpected result - wrong position, but is fine when not amalgamated with other layouts)</p>
+		    </div>
+		    <div class="content__nested2">
+					<h2>Nest Two</h2>				
+		    	<p>medium:<code>span(1 of (7 7) last)</code></p>
+		    	<p>large:<code>span(1 of (1 3 4) at 3)</code></p>
+		    </div>
+
+		  </div>
+
+		  <!-- <div class="content2">
+			  <div class="content2__nested1">
+		    	<h2>Not nested inside content</h2>
+		    	<p><code>span(1 at 2);</code></p>
+		    </div>
+		    <div class="content2__nested2">
+		   	 <h2>Not nested inside content</h2>
+		   	 <p><code>span(1 at 3);</code></p>
+		    </div>	
+		  </div> -->
+	    
+
+
+		  <div class="sidebar-two">
+		  	<h2>Sidebar 2</h2>
+		  	<p><code>@include span(1 last)</code></p>
+		  </div>
+
+		</div>
+	</section>
+</body>
+</html>
